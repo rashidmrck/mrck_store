@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mrck_store/dummy_data.dart';
 import 'package:mrck_store/models/meal.dart';
 
+import '../widgets/meal_item.dart';
+
 class CategoryMeals extends StatelessWidget {
   static const String classId = '/CatogoryMeals';
 
@@ -16,8 +18,9 @@ class CategoryMeals extends StatelessWidget {
 
     final categoryId = routArg['id'];
     final categorytitle = routArg['title'];
-    final categoryMeals =
-        DUMMY_MEALS.where((element) => element.categories.contains(categoryId)).toList();
+    final categoryMeals = DUMMY_MEALS
+        .where((element) => element.categories.contains(categoryId))
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -25,7 +28,14 @@ class CategoryMeals extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return Text(categoryMeals[index].title);
+          var meal = categoryMeals[index];
+          return MealItem(
+            affordability: meal.affordability,
+            complexity: meal.complexity,
+            duration: meal.duration,
+            imgUrl: meal.imageUrl,
+            title: meal.title,
+          );
         },
         itemCount: categoryMeals.length,
       ),

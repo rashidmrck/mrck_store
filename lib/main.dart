@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             )),
       ),
-      // home: CatogeryScreen(),
+      // home: CatogeryScreen(),  
       initialRoute: CatogeryScreen.classId,
       routes: {
         CatogeryScreen.classId : (_) => CatogeryScreen(),
