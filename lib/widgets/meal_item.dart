@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mrck_store/screens/meal_detail_screen.dart';
 
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
+  final String id;
   final String imgUrl;
   final Affordability affordability;
   final String title;
@@ -10,6 +12,7 @@ class MealItem extends StatelessWidget {
   final Complexity complexity;
 
   const MealItem({
+    @required this.id,
     @required this.imgUrl,
     @required this.affordability,
     @required this.title,
@@ -17,7 +20,9 @@ class MealItem extends StatelessWidget {
     @required this.complexity,
   });
 
-  void selectMeal() {}
+  void selectMeal(BuildContext context) {
+    Navigator.of(context).pushNamed(MealDetailScreen.classId, arguments: id);
+  }
 
   String get complexityText {
     switch (complexity) {
@@ -55,7 +60,7 @@ class MealItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(20),
-      onTap: selectMeal,
+      onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -71,8 +76,11 @@ class MealItem extends StatelessWidget {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
-                  child: Image(
-                    image: NetworkImage(imgUrl),
+                  child: Image.network(
+                    imgUrl,
+                    height: 250,
+                    width: double.infinity,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Positioned(
@@ -84,6 +92,7 @@ class MealItem extends StatelessWidget {
                     color: Colors.black54,
                     child: Text(
                       title,
+                      overflow: TextOverflow.fade,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,

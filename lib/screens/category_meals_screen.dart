@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mrck_store/dummy_data.dart';
-import 'package:mrck_store/models/meal.dart';
 
 import '../widgets/meal_item.dart';
 
@@ -30,6 +29,7 @@ class CategoryMeals extends StatelessWidget {
         itemBuilder: (context, index) {
           var meal = categoryMeals[index];
           return MealItem(
+            id: meal.id,
             affordability: meal.affordability,
             complexity: meal.complexity,
             duration: meal.duration,

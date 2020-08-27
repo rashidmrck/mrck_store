@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mrck_store/screens/category_meals_screen.dart';
-
+import 'package:mrck_store/screens/meal_detail_screen.dart';
 import 'screens/catogery_screen.dart';
 
 main() => runApp(MyApp());
@@ -24,11 +24,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             )),
       ),
-      // home: CatogeryScreen(),  
+      // home: CatogeryScreen(),
       initialRoute: CatogeryScreen.classId,
       routes: {
-        CatogeryScreen.classId : (_) => CatogeryScreen(),
-        CategoryMeals.classId : (_) => CategoryMeals(),
+        CatogeryScreen.classId: (_) => CatogeryScreen(),
+        CategoryMeals.classId: (_) => CategoryMeals(),
+        MealDetailScreen.classId: (_) => MealDetailScreen(),
       },
     );
   }
