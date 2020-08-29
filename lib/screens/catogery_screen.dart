@@ -7,23 +7,18 @@ class CatogeryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('MrCK Store'),
+    return GridView(
+      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
+        childAspectRatio: 3 / 2,
       ),
-      body: GridView(
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          childAspectRatio: 3 / 2,
-        ),
-        children: DUMMY_CATEGORIES
-            .map((e) => GridCard(
-                  title: e.title,
-                  color: e.color,
-                  id: e.id,
-                ))
-            .toList(),
-      ),
+      children: DUMMY_CATEGORIES
+          .map((e) => GridCard(
+                title: e.title,
+                color: e.color,
+                id: e.id,
+              ))
+          .toList(),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mrck_store/screens/bottom_tabs_screen.dart';
 import 'package:mrck_store/screens/category_meals_screen.dart';
 import 'package:mrck_store/screens/meal_detail_screen.dart';
+import 'package:mrck_store/screens/tabs_screen.dart';
 import 'screens/catogery_screen.dart';
 
 main() => runApp(MyApp());
@@ -25,8 +27,9 @@ class MyApp extends StatelessWidget {
             )),
       ),
       // home: CatogeryScreen(),
-      initialRoute: CatogeryScreen.classId,
+      // initialRoute: CatogeryScreen.classId,
       routes: {
+        '/': (context) => BottomTabScreen(),
         CatogeryScreen.classId: (_) => CatogeryScreen(),
         CategoryMeals.classId: (_) => CategoryMeals(),
         MealDetailScreen.classId: (_) => MealDetailScreen(),
