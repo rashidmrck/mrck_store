@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mrck_store/screens/catogery_screen.dart';
 import 'package:mrck_store/screens/favorite_screen.dart';
+import 'package:mrck_store/widgets/main_drawer.dart';
 
 class BottomTabScreen extends StatefulWidget {
+  static const classId = '/BottamTabScreen';
   @override
   _BottomTabScreenState createState() => _BottomTabScreenState();
 }
@@ -28,6 +30,7 @@ class _BottomTabScreenState extends State<BottomTabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MainDrawer(),
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
