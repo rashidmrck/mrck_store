@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mrck_store/dummy_data.dart';
+
 import 'package:mrck_store/models/meal.dart';
 
 import '../widgets/meal_item.dart';
@@ -7,13 +7,17 @@ import '../widgets/meal_item.dart';
 class CategoryMeals extends StatefulWidget {
   static const String classId = '/CatogoryMeals';
 
+  final List<Meal> availableMeals;
+  const CategoryMeals({this.availableMeals});
+
   @override
   _CategoryMealsState createState() => _CategoryMealsState();
 }
 
 class _CategoryMealsState extends State<CategoryMeals> {
-  String catogeryTitle;
+  String _catogeryTitle;
   List<Meal> displayedMeals;
+  var _loadedData = false;
 
   void _removeItem(value) {
     setState(() {
@@ -23,13 +27,15 @@ class _CategoryMealsState extends State<CategoryMeals> {
 
   @override
   void didChangeDependencies() {
-    final Map routArg = ModalRoute.of(context).settings.arguments;
-
-    final categoryId = routArg['id'];
-    catogeryTitle = routArg['title'];
-    displayedMeals = DUMMY_MEALS
-        .where((element) => element.categories.contains(categoryId))
-        .toList();
+    if (!_loadedData) {
+      final Map routArg = ModalRoute.of(context).settings.arguments;
+      final categoryId = routArg['id'];
+      _catogeryTitle = routArg['title'];
+      displayedMeals = widget.availableMeals
+          .where((element) => element.categories.contains(categoryId))
+          .toList();
+      _loadedData = true;
+    }
     super.didChangeDependencies();
   }
 
@@ -37,7 +43,7 @@ class _CategoryMealsState extends State<CategoryMeals> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(catogeryTitle),
+        title: Text(_catogeryTitle),
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
