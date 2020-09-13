@@ -49,7 +49,6 @@ class _CategoryMealsState extends State<CategoryMeals> {
         itemBuilder: (context, index) {
           var meal = displayedMeals[index];
           return MealItem(
-            removeItem: _removeItem,
             id: meal.id,
             affordability: meal.affordability,
             complexity: meal.complexity,
